@@ -1,5 +1,6 @@
 mixin members-cap-img-list(data)
-	+b.members-cap-img-list&attributes(attributes)
+	+b('ul').members-cap-img-list&attributes(attributes)
 		each item in data
-			+member(item)
+			.col-md-4
+				+member(item)
 		block

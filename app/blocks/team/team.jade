@@ -5,7 +5,7 @@ mixin team()
 				.col-md-3
 					+title
 						|	Our Experience Team
-					+button
+					+button({mod: "_blue"}) 
 						| see all member
 				.col-md-9
 					+members-cap-img-list(getData('members-cap-img-list'))

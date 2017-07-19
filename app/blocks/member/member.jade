@@ -1,9 +1,11 @@
 mixin member(data)
-	+b.member&attributes(attributes)
-		+e('img').img&attributes({src: data.imgSrc})
+	+b('li').member&attributes(attributes)
+		.relative.overflow-hidden
+			+e('img').img&attributes({src: data.imgSrc})
+			+social-fa-list(data.socialList, "_white-blue")
 		+e('caption')
 			+item-title
-				| #{item.title}
+				| #{data.title}
 			+item-subtitle
-				| #{item.subtitle}
+				| #{data.subtitle}
 		block

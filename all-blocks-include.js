@@ -9,6 +9,7 @@ function allBlocksInclude(targetFile, blocksDir) {
 				reject(`Failed to read blocks names ${err}`);
 			}
 			// TODO исключить layout-default блок из includ'а
+			files.filter((file) => file !== 'layout-defaul')
 
 			const promises = files.map(file => {
 				return function(previousResponse, responses, count) {

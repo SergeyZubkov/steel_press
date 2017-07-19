@@ -1,0 +1,6 @@
+mixin social-fa-list(data, mixins)
+	+b('ul').social-fa-list&attributes({class: mixins})
+		each item in data
+			+e('li').item&attributes({class: item.iconClass})
+				+e('a').link&attributes({href: item.link}) 
+		block

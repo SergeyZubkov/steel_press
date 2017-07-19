@@ -13,9 +13,10 @@ mixin slider(data)
 						+e.caption 
 
 							+e.caption-title #{firstWord}
-								span #{secondWord}
-								|	#{otherWords}
+									span #{secondWord}
+									|	#{otherWords}
 							+e.caption-title #{item.caption.title2}
 							+e.caption-sub-title #{item.caption.subtitle}
-							+button({text: 'contact us', mod: 'primary'})
+							+button({mod: 'primary'})
+								| contact us
 		block

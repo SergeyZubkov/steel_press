@@ -2,16 +2,70 @@
 	{
 		"imgSrc": "assets/images/members/1.jpg",
 		"title": "Joshua Enu",
-		"subtitle": "Customer Support officer"
+		"subtitle": "Customer Support officer",
+		"socialList": [
+			{
+				"iconClass": "fa fa-facebook",
+				"link": "#"
+			},
+			{
+				"iconClass": "fa fa-twitter",
+				"link": "#"
+			},
+			{
+				"iconClass": "fa fa-google-plus",
+				"link": "#"
+			},
+			{
+				"iconClass": "fa fa-pinterest",
+				"link": "#"
+			}
+		]
 	},
 	{
 		"imgSrc": "assets/images/members/2.jpg",
 		"title": "Brock Lesner",
-		"subtitle": "Customer Support officer"
+		"subtitle": "Customer Support officer",
+		"socialList": [
+			{
+				"iconClass": "fa fa-facebook",
+				"link": "#"
+			},
+			{
+				"iconClass": "fa fa-twitter",
+				"link": "#"
+			},
+			{
+				"iconClass": "fa fa-google-plus",
+				"link": "#"
+			},
+			{
+				"iconClass": "fa fa-pinterest",
+				"link": "#"
+			}
+		]
 	},
 	{
 		"imgSrc": "assets/images/members/3.jpg",
 		"title": "Michale Andrew",
-		"subtitle": "Customer Support officer"
+		"subtitle": "Customer Support officer",
+		"socialList": [
+			{
+				"iconClass": "fa fa-facebook",
+				"link": "#"
+			},
+			{
+				"iconClass": "fa fa-twitter",
+				"link": "#"
+			},
+			{
+				"iconClass": "fa fa-google-plus",
+				"link": "#"
+			},
+			{
+				"iconClass": "fa fa-pinterest",
+				"link": "#"
+			}
+		]
 	}
 ]
