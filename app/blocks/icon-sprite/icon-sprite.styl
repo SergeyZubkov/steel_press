@@ -1,0 +1,22 @@
+.icon-sprite
+	display inline-block
+	&_phone-call
+		sprite($phone_call)
+	&_map-marker
+		sprite($location_pin)
+	&_engineer
+		sprite($engineer)
+	&_settings
+		sprite($settings)
+	&_medal
+		sprite($medal)
+	&_shape
+		position relative
+		&:after
+			content ''
+			display block
+			position absolute
+			top 50%
+			left 50%
+			transform translate(-50%, -50%)
+			sprite($shape)

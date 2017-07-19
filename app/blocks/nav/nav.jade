@@ -1,0 +1,30 @@
+include ../dropdown/dropdown
+include ../link/link
+
+mixin nav(data, mixins)
+	+b('ul').nav&attributes({class: mixins})
+		each item, index in data
+			if (index === 0)
+				if (item.dropdown)
+					+e('li').item._active._dropdown
+						+link(item.href, 'nav__link')
+							|#{item.title}
+							+b('i')&attributes({class: "fa fa-angle-down"})
+							+dropdown(item.dropdown)
+				else
+					+e('li').item._active
+						+link(item.href, 'nav__link')
+							|#{item.title}
+
+			else
+				if item.dropdown
+					+e('li').item._dropdown
+						+link(item.href, 'nav__link')
+							|#{item.title}
+						+b('i')&attributes({class: "fa fa-angle-down"})
+						+dropdown(item.dropdown)
+				else
+					+e('li').item
+						+link(item.href, 'nav__link')
+							|#{item.title}
+		block

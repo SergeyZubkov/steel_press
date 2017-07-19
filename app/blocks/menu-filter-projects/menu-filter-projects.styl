@@ -1,0 +1,42 @@
+.menu-filter-projects
+	display block
+	background transparent
+	font-size 0
+	position absolute
+	left 360px
+	top 50%
+	transform translateY(-50%)
+	&__item
+		display inline-block
+		border 1px solid tundora
+		border-right none
+		font-size 18px
+		&:last-child
+			border-right 1px solid tundora
+		&_active .menu-filter-projects__item-title
+			color white
+			background tundora
+		&-title
+			cursor pointer
+			text-transform capitalize
+			font-weight 400
+			display block
+			color gray
+			font-size 18px
+			height 35px
+			line-height 35px
+			transition .4s
+			padding 0 10px;
+			&:hover
+				color white
+				background tundora
+			&:active
+				color #777
+			&:visited
+				color #777
+			&:link
+				color #777
+			&:focus
+			  color #777
+			&:hover
+				color #777

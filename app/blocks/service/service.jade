@@ -1,0 +1,13 @@
+mixin service()
+	+b.service&attributes(attributes)
+		.container
+			+title-line
+				+theme-title
+					| Service we offer
+				+sub-title
+					| Lorem ipsum dolor sit amet consectetur adipisicing elit Perfer repudian alias quibusdam!
+				+button({mod: 'button_white button_border'})
+					| See all service
+			+service-list(getData("service-list"))
+
+		block

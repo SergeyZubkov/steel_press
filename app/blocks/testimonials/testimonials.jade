@@ -1,0 +1,10 @@
+mixin testimonials()
+	.container
+		+b.testimonials&attributes(attributes)
+				.row
+					.col-md-3
+						+title
+							| Check What’s Our Client Say About Us
+					.col-md-9
+						+slider-testimonials(getData("slides-testimonials"))
+		block

@@ -1,0 +1,17 @@
+[
+	{
+		"iconName": "engineer",
+		"title": "Expert",
+		"subtitle": "Certified Engineer"
+	},
+	{
+		"iconName": "medal",
+		"title": "Modern",
+		"subtitle": "Material Equipment"
+	},
+	{
+		"iconName": "settings",
+		"title": "quality",
+		"subtitle": "Services Certified"
+	}
+]

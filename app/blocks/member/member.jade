@@ -1,0 +1,9 @@
+mixin member(data)
+	+b.member&attributes(attributes)
+		+e('img').img&attributes({src: data.imgSrc})
+		+e('caption')
+			+item-title
+				| #{item.title}
+			+item-subtitle
+				| #{item.subtitle}
+		block

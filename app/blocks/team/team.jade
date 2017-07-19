@@ -1,0 +1,12 @@
+mixin team()
+	+b.team&attributes(attributes)
+		.container
+			.row
+				.col-md-3
+					+title
+						|	Our Experience Team
+					+button
+						| see all member
+				.col-md-9
+					+members-cap-img-list(getData('members-cap-img-list'))
+		block

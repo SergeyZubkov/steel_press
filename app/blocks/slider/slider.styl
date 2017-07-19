@@ -1,0 +1,88 @@
+.slider
+	display block
+	height 860px
+	@media only screen and (max-width:768px) 
+		height 640px
+	&__container
+		position relative
+	&__caption
+		z-index 5
+		color #fff
+		font-weight 900
+		font-family Raleway
+		position absolute
+		top 50%
+		width 100%
+		transform translateY(-20%)
+		text-align center
+		text-transform uppercase
+		@media only screen and (max-width:768px) 
+			position static
+			padding-top 190px
+		&-title
+			font-size 60px
+			margin-bottom 20px
+			@media only screen and (max-width:768px)
+				font-size 36px
+				
+			& span
+				color color-yellow
+		&-sub-title
+			padding 5px 0 50px
+			font-size 20px
+			font-weight normal
+/*! http://responsiveslides.com v1.55 by @viljamis */
+.rslides 
+	position relative
+	list-style none
+	overflow hidden
+	width 100%
+	padding 0
+	margin 0
+	li 
+		-webkit-backface-visibility hidden
+		display none
+		height 100%
+		width 100%
+		left 0
+		top 0
+		&>div:first-child
+			position absolute
+			top 0
+			bottom 0
+			left 0
+			right 0
+			background-size cover
+	li:first-child 
+		position relative
+		display block
+		float left
+
+
+	img 
+		display block
+		height auto
+		float left
+		width 100%
+		border none
+
+	&_tabs
+		position absolute
+		bottom 5%
+		width 100%
+		text-align center
+		background transparent
+		z-index 10
+		& li 
+			display inline-block
+			text-align center
+			border 2px solid #fff
+			size(15px)
+			border-radius 50%
+			margin 0 3px
+			&.rslides_here
+				background #fff
+			& a
+				color #fff
+				opacity 0
+				

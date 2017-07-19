@@ -1,0 +1,6 @@
+mixin slider-projects(data)
+	+b.slider-projects&attributes(attributes)
+		for item in data
+			+e.item&attributes({"data-category": item.category.toLowerCase() })
+				+e('img').item-img&attributes({src: item.src})
+		block

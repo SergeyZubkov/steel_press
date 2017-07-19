@@ -1,0 +1,29 @@
+include ../hr/hr
+include ../title/title
+include ../strong/strong
+include ../p/p
+include ../counter-list/counter-list
+
+mixin about()
+	+b.about&attributes(attributes)
+		.container
+			.row
+				+e.left.col-md-6
+					+title
+						| Helping & providing 
+						br
+						| The best services to our client 
+						br
+						| Business over 20 years
+					+button({mod:'_white _border'})
+						| Learn more
+				.col-md-6
+					+p
+						+strong
+							| Lorem ipsum dolor sit amet consectetur adipisicing elit Perfer repudiandae nostrum alias quibusdam!
+					+p
+						| Lorem ipsum dolor sit amet consectetur adipisic.Min commodi enim nemo illum repellendus accusantium maiores itu delectus doloribus alias ea quisquam cum nullavolupta delectu. 
+					+p
+						| nobis eius, deleniti dicta molestiae atque. Exercitationem odit dolor cumque facilis natus recusandae id, dolorum modi ducimus minus.
+			+counter-list(getData("counter-list"),'row')
+		block

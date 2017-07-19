@@ -1,0 +1,9 @@
+include ../link/link
+
+mixin dropdown(data, mixins)
+	+b('ul').dropdown&attributes({class: mixins})
+		each item in data
+			+e('li').item
+				+link(item.link, "dropdown__link")
+					|#{item.title}
+		block

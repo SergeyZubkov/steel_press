@@ -1,0 +1,38 @@
+{
+	// do not specify reporter here
+	// because it breaks SublimeLinter-contrib-stylint
+	// use gulp task style:lint instead
+	"blocks": "never",
+	"brackets": "never",
+	"colons": "never",
+	"colors": false,
+	"commaSpace": "always",
+	"commentSpace": "always",
+	"cssLiteral": "never",
+	"depthLimit": 5,
+	"duplicates": true,
+	"efficient": "always",
+	"extendPref": "@extends",
+	"globalDupe": false,
+	"indentPref": false,
+	"leadingZero": "never",
+	"maxErrors": false,
+	"maxWarnings": false,
+	// "mixed": true, // bug: throw error when there are spaces after rule before comment
+	"namingConvention": "BEM",
+	"namingConventionStrict": true,
+	"none": "always",
+	"noImportant": true,
+	"parenSpace": "never",
+	"placeholders": false,
+	"prefixVarsWithDollar": true,
+	"quotePref": "single",
+	"semicolons": "never",
+	"stackedProperties": "never",
+	// "trailingWhitespace": "never", // bug: throw error when there are spaces after rule before comment
+	"universal": "never",
+	"valid": true, // discuss 8
+	"mixins": ["size", "margin-x", "margin-y", "padding-x", "padding-y"],
+	"zeroUnits": "never",
+	"zIndexNormalize": false
+}

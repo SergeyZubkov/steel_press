@@ -1,0 +1,8 @@
+mixin social-list(data, mixins)
+	+b('ul').social-list&attributes({class: mixins})
+		each item in data
+					+e('li').item&attributes({class: item.iconClass})
+						+e('a').link&attributes({href: item.link}) 
+							|#{item.title}
+
+		block

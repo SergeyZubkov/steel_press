@@ -1,0 +1,37 @@
+.nav-toggle
+	display none
+	position absolute
+	top 0
+	right 0
+	z-index 10
+	@media only screen and (max-width:768px) 
+		display block
+	
+	span
+		display inline-block
+		width 20px
+		height 2px
+		background #fff
+		position relative
+		&:after,
+		&:before 
+			display inline-block
+			content ''
+			width 20px
+			height 2px
+			background #fff
+			position absolute
+			transition .2s
+		&:after
+			top 7px
+		&:before
+			top -7px
+	&_on
+		span
+			background rgba(0, 0, 0, .001)
+			&:after, &:before
+				transform-origin 0 50%
+			&:before
+				transform rotate(45deg)
+			&:after
+				transform rotate(-45deg)

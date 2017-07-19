@@ -1,0 +1,11 @@
+mixin service-list(data)
+	+b('ul').service-list.row&attributes(attributes)
+		each item in data
+				.col-md-4
+					+e.item
+						+e('img').item-img&attributes({src: item.img})
+						+e('a').item-caption.link&attributes({href: item.caption.link})
+							+e.item-caption-title
+								| #{item.caption.title}
+							+e.item-caption-arrow.fa.fa-angle-right
+		block

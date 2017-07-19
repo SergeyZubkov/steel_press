@@ -1,0 +1,18 @@
+[
+	{
+		"iconClass": "fa fa-facebook",
+		"link": "#"
+	},
+	{
+		"iconClass": "fa fa-twitter",
+		"link": "#"
+	},
+	{
+		"iconClass": "fa fa-google-plus",
+		"link": "#"
+	},
+	{
+		"iconClass": "fa fa-pinterest",
+		"link": "#"
+	}
+]

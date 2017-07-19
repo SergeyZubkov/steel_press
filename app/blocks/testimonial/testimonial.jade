@@ -1,0 +1,12 @@
+mixin testimonial(data, mixins)
+	+b.testimonial&attributes({class: mixins})
+		.col-md-1
+			+e('img').img&attributes({src: data.imgSrc})
+		.col-md-11
+			+item-title
+				| #{data.title}
+			+item-subtitle
+				| #{data.subtitle}
+			+p
+				| #{data.text}
+		block

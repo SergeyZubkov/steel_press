@@ -1,0 +1,26 @@
+include ../container/container
+include ../logo/logo
+include ../social-list/social-list
+include ../contact-item/contact-item
+include ../nav/nav
+include ../nav-toggle/nav-toggle
+
+mixin header()
+	+b.header&attributes(attributes)
+		.container
+			+e.logo-container.col-md-4
+				+logo({href: '#', src: "/assets/images/logo.png"})
+			.col-md-8
+				+e.right-top.row
+					+e.social-container.col-md-4
+							+social-list(getData("social-list"))
+					+e.contact-item-container
+						.col-md-4
+							+contact-item({iconName: 'phone-call', header: '880 172801729', text: 'contactus@gmail.com'})
+						.col-md-4
+							+contact-item({iconName: 'map-marker', header: 'Dhanmondi road', text: 'Dhaka, 1230'})
+			.col-md-8.col-md-offset-4
+				+e.right-bottom
+					+nav-toggle
+					+nav(getData("nav-list"))
+		block

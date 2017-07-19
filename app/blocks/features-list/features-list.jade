@@ -1,0 +1,9 @@
+mixin features-list(data)
+	+b('ul').features-list.row&attributes(attributes)
+		each item in data
+			.col-md-4.col-sm-4
+				+e.item
+					+icon-sprite(item.iconName, '_shape')
+					+e.item-title #{item.title}
+					+e.item-subtitle #{item.subtitle}
+		block

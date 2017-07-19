@@ -1,0 +1,12 @@
+mixin give()
+	+b.give&attributes(attributes)
+		.container
+			.row
+				.col-md-5
+					+e.title
+						| Give 100% satisfaction to our client is our main goal
+					+button({mod: '_hover-white'})
+						| Our Service
+				.col-md-7
+					+features-list(getData('features-list'))
+		block

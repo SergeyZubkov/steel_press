@@ -1,0 +1,4 @@
+mixin logo(options)
+		+b('a').logo&attributes({class: options.mixins, href: options.href })
+			+e('img').image&attributes({src: options.src})
+			block

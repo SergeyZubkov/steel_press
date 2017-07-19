@@ -1,0 +1,7 @@
+mixin menu(data, mixins)
+	+b('ul').menu&attributes({class: mixins})
+		each item in data
+			+e('li').item
+				+e('a').item-title&attributes({href: data.href})
+					|#{item.title}
+		block

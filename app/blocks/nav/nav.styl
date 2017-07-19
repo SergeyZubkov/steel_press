@@ -1,0 +1,51 @@
+.nav
+	display block
+	overflow hidden
+	@media only screen and (max-width:768px)
+			display none
+	&__item
+		float left
+		margin-left 20px
+		font-size 22px
+		text-transform capitalize
+		position relative
+		@media only screen and (max-width:1024px) 
+			margin-left 17px	
+			font-size 19px
+		@media only screen and (max-width:768px)
+			float none
+			margin-left none
+			padding 10px
+		&_active .link.nav__link
+			color #FAC800
+		i 
+			color #fff
+		&_dropdown:hover 
+			height 255px
+			& .dropdown
+				visibility visible
+				transform translateY(-50px)
+				transition .15s
+	&__link
+		color #fff 
+		&:hover
+			color #fff
+		&:active
+			color #fff
+		&:visited
+			color #fff
+		&:link
+			color #fff
+		&:focus
+			color #fff
+		
+		&:hover
+			text-decoration none
+			color #FAC800
+			transition .2s
+			&+i
+				color #FAC800
+				transition .2s
+				
+
+		height 100%

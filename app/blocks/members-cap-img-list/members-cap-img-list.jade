@@ -1,0 +1,5 @@
+mixin members-cap-img-list(data)
+	+b.members-cap-img-list&attributes(attributes)
+		each item in data
+			+member(item)
+		block

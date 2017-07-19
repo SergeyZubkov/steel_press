@@ -1,0 +1,21 @@
+mixin slider(data)
+	.slider__container
+		+b('ul').slider.rslides&attributes(attributes)
+			each item in data
+				- var words = item.caption.title1.split(' ');
+				- var firstWord = words[0];
+				- var secondWord = words[1];
+				- var otherWords = words.slice(2).join('')
+				+e('li').item
+					+e('img').img&attributes({src: item.src})
+
+					if (item.caption)
+						+e.caption 
+
+							+e.caption-title #{firstWord}
+								span #{secondWord}
+								|	#{otherWords}
+							+e.caption-title #{item.caption.title2}
+							+e.caption-sub-title #{item.caption.subtitle}
+							+button({text: 'contact us', mod: 'primary'})
+		block

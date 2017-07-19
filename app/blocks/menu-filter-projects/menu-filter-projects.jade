@@ -1,0 +1,7 @@
+mixin menu-filter-projects(data, mixins)
+	+b('ul').menu-filter-projects&attributes({class: mixins})
+		each item, index in data
+			+e('li').item&attributes({"data-filter-by": item.filterBy.toLowerCase(), class: index === 0 ? '_active': ''})
+				+e('a').item-title
+					|#{item.title}
+		block

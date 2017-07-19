@@ -1,0 +1,26 @@
+[
+	{
+		"title": "all",
+		"filterBy": "all"
+	},
+	{
+		"title": "Mechanical",
+		"filterBy": "Mechanical"
+	},
+	{
+		"title": "Checmical",
+		"filterBy": "Checmical"
+	},
+	{
+		"title": "Construction",
+		"filterBy": "Construction"
+	},
+	{
+		"title": "Agriculture",
+		"filterBy": "Agriculture"
+	},
+	{
+		"title": "Oil",
+		"filterBy": "Oil"
+	}
+]

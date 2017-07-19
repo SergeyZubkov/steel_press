@@ -1,0 +1,100 @@
+extends /blocks/layout-default/layout-default
+
+include /blocks/about/about
+include /blocks/bg-mine-shaft/bg-mine-shaft
+include /blocks/button/button
+include /blocks/contact-item/contact-item
+include /blocks/container/container
+include /blocks/counter-list/counter-list
+include /blocks/dropdown/dropdown
+include /blocks/fa-icon/fa-icon
+include /blocks/features-list/features-list
+include /blocks/give/give
+include /blocks/head/head
+include /blocks/header/header
+include /blocks/hr/hr
+include /blocks/icon/icon
+include /blocks/icon-sprite/icon-sprite
+include /blocks/item-subtitle/item-subtitle
+include /blocks/item-title/item-title
+include /blocks/link/link
+include /blocks/logo/logo
+include /blocks/member/member
+include /blocks/members-cap-img-list/members-cap-img-list
+include /blocks/menu-filter-projects/menu-filter-projects
+include /blocks/nav/nav
+include /blocks/nav-toggle/nav-toggle
+include /blocks/p/p
+include /blocks/page/page
+include /blocks/projects/projects
+include /blocks/scripts/scripts
+include /blocks/service/service
+include /blocks/service-list/service-list
+include /blocks/slider/slider
+include /blocks/slider-projects/slider-projects
+include /blocks/slider-testimonials/slider-testimonials
+include /blocks/social-list/social-list
+include /blocks/stripe-bg-fixed/stripe-bg-fixed
+include /blocks/strong/strong
+include /blocks/sub-title/sub-title
+include /blocks/team/team
+include /blocks/testimonial/testimonial
+include /blocks/testimonials/testimonials
+include /blocks/theme-title/theme-title
+include /blocks/title/title
+include /blocks/title-line/title-line
+
+block head
+	- var pageTitle = 'CSSSR Project Template';
+
+block content
+	//
+		=================================
+		=            Header               
+		=====================================
+	+header
+	//====  End of Header ====//
+	//
+		=================================
+		=            Slider               
+		=====================================
+	+slider(getData('slides-list'))
+	//====  End of Slider ====//
+	//
+		=================================
+		=            Service               
+		=====================================
+	+service
+	//====  End of Service ====//
+	//
+		=================================
+		=            About               
+		=====================================
+	+about
+	//====  End of About ====//
+	//
+		=================================
+		=            Give               
+		=====================================
+	+stripe-bg-fixed
+		+give
+	//====  End of Give ====//
+	//
+		=================================
+		=            Projects               
+		=====================================
+	+bg-mine-shaft
+		+projects
+	//====  End of Projects ====//
+	//
+		=================================
+		=            Testimonials               
+		=====================================
+	+testimonials
+	//====  End of Testimonials ====//
+	//
+		=================================
+		=            Team               
+		=====================================
+	+team
+	//====  End of Team ====//

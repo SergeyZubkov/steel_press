@@ -1,0 +1,12 @@
+include ../icon-sprite/icon-sprite
+
+mixin contact-item(data, mixins)
+	+b.contact-item&attributes({class: mixins})
+		+e.icon-container
+			+icon-sprite(data.iconName)
+		+e.info
+			+e.header
+				| #{data.header}
+			+e.text
+				| #{data.text}
+		block

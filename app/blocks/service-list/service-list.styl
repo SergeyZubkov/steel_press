@@ -1,0 +1,58 @@
+.service-list
+	display block
+	&__item
+		position relative
+		margin-bottom 40px
+		overflow hidden
+		background rgba(0, 0, 0, .0)
+		&:before
+			transition .7s
+			content ''
+			display block
+			position absolute
+			z-index 1
+			top 0
+			bottom 0
+			right 0
+			left 0
+			background rgba(0, 0, 0, .0)
+		&:hover
+			.service-list__item-img
+				position relative
+				transform scale(1.1)
+			&:before
+				background rgba(0, 0, 0 , .3)
+	&__item-img
+		position relative
+		width 100%
+		transition .7s
+	&__item-caption
+		position absolute
+		bottom 0
+		background alpha(color-blue, .9)
+		z-index 2
+		left 0
+		right 0
+		height 70px
+		&-title
+			color #fff
+			text-transform uppercase
+			font-size 20px
+			font-weight 700
+			line-height 70px
+			margin-left 20px
+		&-arrow
+			background color-yellow
+			display inline-block
+			width 40px
+			height 40px
+			position absolute
+			top 50%
+			right 0
+			transform translateY(-50%)
+			margin-right 20px
+			color #fff
+			text-align center
+			&:before
+				line-height 40px
+				font-size 26px

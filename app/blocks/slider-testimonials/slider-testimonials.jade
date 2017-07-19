@@ -1,0 +1,6 @@
+mixin slider-testimonials(data)
+	+b.slider-testimonials&attributes(attributes)
+		each item in data
+			+e.item
+				+testimonial(item)
+		block

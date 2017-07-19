@@ -1,0 +1,3 @@
+mixin link(href, mixins)
+	+b('a').link&attributes({href: href|| '#', class: mixins})
+		block

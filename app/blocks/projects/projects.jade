@@ -1,0 +1,11 @@
+mixin projects()
+	+b.projects&attributes(attributes)
+		.container
+			.row
+				.col-md-12.col-sm-12
+					+theme-title('_color-white')
+						| Recent Projects
+						+menu-filter-projects(getData('menu-filter-projects'))
+				+e.slider-container.col-md-12.col-sm-12
+					+slider-projects(getData('slides-projects'))
+		block

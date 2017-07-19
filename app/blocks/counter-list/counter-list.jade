@@ -1,0 +1,9 @@
+mixin counter-list(data, mixin)
+	+b.counter-list&attributes({class: mixin})
+		each item in data
+			.col-md-3
+				+e('span').item&attributes({"data-from": item.from, "data-to": item.to, "data-speed": data.speed})
+				span +
+				+e.title
+					| #{item.title}
+		block
