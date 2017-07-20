@@ -4,16 +4,17 @@ import fs from 'fs';
 import path from 'path';
 import { createInterface } from 'readline';
 import includeBlock from './include-block';
-import sequential from 'promise-sequential';
+
 const rl = createInterface(process.stdin, process.stdout);
 console.log(includeBlock)
 // folder with all blocks
 const BLOCKS_DIR = path.join(__dirname, 'app/blocks');
+const INDEX_JADE_DIR = path.join(__dirname, '/app/pages/index.jade');
 
 // //////////////////////////////////////////////////////////////////////////////////////////////////
 
 // default content for files in new block
-const fileSources = {
+const tmpDefault = {
 	jade: `mixin {blockName}()\n\t+b.{blockName}&attributes(attributes)\n\t\tblock\n`,
 	styl: `.{blockName}\n\tdisplay block\n`
 };
@@ -58,10 +59,22 @@ function createDir(dirPath) {
 	});
 }
 
-function createFiles(blocksPath, blockName) {
+function getTemplate(blockName) {
+	return new Promise((resolve, reject) => {
+		resolve(tmpDefault);
+	});
+}
+
+function generateJSONIfNeeded(template, blockName) {
+	return new Promise((resolve, reject) => {
+		resolve(tmpDefault);
+	});
+}
+
+function createFiles(blocksPath, blockName, template) {
 	const promises = [];
-	Object.keys(fileSources).forEach(ext => {
-		const fileSource = fileSources[ext].replace(/\{blockName}/g, blockName);
+	Object.keys(template).forEach(ext => {
+		const fileSource = template[ext].replace(/\{blockName}/g, blockName);
 		const filename = `${blockName}.${ext}`;
 		const filePath = path.join(blocksPath, filename);
 
@@ -109,8 +122,9 @@ function initMakeBlock(candidateBlockName) {
 		return validateBlockName(blockName)
 			.then(() => directoryExist(blockPath, blockName))
 			.then(() => createDir(blockPath))
-			.then(() => createFiles(blockPath, blockName))
-			.then(() => includeBlock(__dirname + "/app/pages/index.jade", blockName))
+			.then(() => getTemplate(blockName))
+			.then((template) => generateJSONIfNeeded(template, blockName))
+			.then((template) => createFiles(blockPath, blockName, template))
 			.then(() => getFiles(blockPath))
 			.then(files => {
 				const line = '-'.repeat(48 + blockName.length);
@@ -126,16 +140,12 @@ function initMakeBlock(candidateBlockName) {
 	};
 
 	if (blockNames.length === 1) {
-		return makeBlock(blockNames[0]);
-	}
+		return makeBlock(blockNames[0]).then(() => includeBlock(INDEX_JADE_DIR, blockNames[0]));
+	} 
 
-	const promises = blockNames.map(name => {
-		return function(previousResponse, responses, count) {
-			return makeBlock(name)
-		}
-	});
+	const promises = blockNames.map(name => makeBlock(name));
 
- 	return sequential(promises);
+ 	return Promise.all(promises).then(() => includeBlock(INDEX_JADE_DIR, blockNames));
 }
 
 

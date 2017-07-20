@@ -1,16 +1,23 @@
 import fs from 'fs';
 
 function includeBlock(pathToFile, blockName) {
-
-	let insertingLine = `include /blocks/${blockName}/${blockName}`;
+	let inserting;
+	if (Array.isArray(blockName)) {
+		inserting = blockName
+			.map(bN => `include /blocks/${bN}/${bN}`)
+			.join('\n');
+	} else {
+		inserting = `include /blocks/${blockName}/${blockName}`;
+	}
 		return new Promise((resolve, reject) => {
 			fs.readFile(pathToFile, 'utf-8', (err, data) => {
 				if (err) {
 					reject(`ERR>> failed to read file ${err}`);
 				} 
-				console.log(data);
+
+
 				if (!data) {
-					data = insertingLine;
+					data = inserting;
 				} else {
 					data = data.split("\n");
 
@@ -27,7 +34,7 @@ function includeBlock(pathToFile, blockName) {
 						return idx+1;
 					}
 
-					data.splice(getLastIncludeIdx(), 0, insertingLine);
+					data.splice(getLastIncludeIdx(), 0, inserting);
 
 					data = data.join("\n");
 				}
@@ -36,9 +43,9 @@ function includeBlock(pathToFile, blockName) {
 					if (err) {
 						reject(`ERR>> failed to write in file ${err}`);		
 					}
-					const line = '-'.repeat(49 + blockName.length);
+					const line = '-'.repeat(49 + 'app/pages/index.jade/'.length + blockName.length);
 					console.log(line);
-					console.log(`The block has included in 'app/pages/index.jade/${blockName}'`);
+					console.log(`The block${Array.isArray(blockName) ? 's': ''} ${blockName} has included in 'app/pages/index.jade/'`);
 					console.log(line);
 					resolve()
 				});

@@ -33,7 +33,7 @@
     "patch": "gulp patch",
     "minor": "gulp minor",
     "major": "gulp major",
-    "test": "babel-node all-blocks-include.js"
+    "test": "babel-node generate-json"
   },
   "repository": {
     "type": "git",
