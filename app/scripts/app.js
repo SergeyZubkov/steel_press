@@ -3,6 +3,7 @@ import $ from 'jquery';
 import '../vendor/responsiveslides';
 import '../vendor/jquery.appear';
 import '../vendor/jquery.countTo';
+import '../vendor/slick';
 
 
 
@@ -103,5 +104,10 @@ $(() => {
 		autoplay: true,
 		autoplaySpeed: 2000
 	});
-});
+	//----------------------test-slider
 
+	$('.test-slider').slick({
+
+	});
+	// ----------------------End test-slider
+});

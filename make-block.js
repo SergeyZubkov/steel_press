@@ -115,7 +115,9 @@ function getTemplate(blockName) {
 		let tmp;
 		if (/-images-list$/.test(blockName)) {
 			tmp = tmpImagesList;
-		} else {
+		} else if (/-slider$/.test(blockName)) {
+			tmp = tmpSlider;
+		}	else {
 			tmp = tmpDefault;
 		}
 		resolve(tmp);
@@ -125,7 +127,7 @@ function getTemplate(blockName) {
 function generateJSONIfNeeded(template, blockName) {
 	return new Promise((resolve, reject) => {
 		if (!template.json) {
-			resolve(tmp)
+			resolve(template)
 		} else {
 			let imagesDir = path.join(template.json.sourceImages, blockName);
 			console.log(imagesDir)
@@ -158,7 +160,6 @@ function generateJSONIfNeeded(template, blockName) {
 
 function generateJsIfNeed(template, blockName) {
 	const pluginName = template.js.pluginName;
-
 	function readJS() {
 		return new Promise((resolve, reject) => {
 			fs.readFile(JS_APP_PATH, 'utf-8', (err, data) => {
@@ -198,17 +199,35 @@ function generateJsIfNeed(template, blockName) {
 					const baseJS = template.js.baseJS
 						.replace(/\{blockName}/g, blockName);
 
-					const newData = data.push(...baseJS.split('\n'));
-					console.log(data);
+					data.splice(-2, 0, ...baseJS.split('\n'));
+					
+					delete template.js;
 
+					resolve(data.join('\n'));
+				}
+			});
+		});
+	}
+
+	function writeJS(newData) {
+		return new Promise((resolve, reject) => {
+			fs.writeFile(JS_APP_PATH, newData, (err) => {
+				if (err) {
+					reject(`Failed write file ${JS_APP_PATH} for block ${blockName}`);
+				} else {
+					resolve(template);
 				}
 			});
 		});
 	}
 	return new Promise((resolve, reject) => {
 		if (template.js) {
-			readJS();
+			readJS()
+			.then((newData) => writeJS(newData))
+			.then(() => resolve(template))
 		} else {
+			console.log(template)
+
 			resolve(template);
 		}
 	});
@@ -275,6 +294,7 @@ function initMakeBlock(candidateBlockName) {
 			.then(() => createDir(blockPath))
 			.then(() => getTemplate(blockName))
 			.then((template) => generateJSONIfNeeded(template, blockName))
+			.then((template) => generateJsIfNeed(template, blockName))
 			.then((template) => createFiles(blockPath, blockName, template))
 			.then(() => getFiles(blockPath))
 			.then(files => {
@@ -306,21 +326,20 @@ function initMakeBlock(candidateBlockName) {
 //
 
 // Command line arguments
-// const blockNameFromCli = process.argv
-// 		.slice(2)
-// 		// join all arguments to one string (to simplify the capture user input errors)
-// 		.join(' ');
+const blockNameFromCli = process.argv
+		.slice(2)
+		// join all arguments to one string (to simplify the capture user input errors)
+		.join(' ');
 
-// // If the user pass the name of the block in the command-line options
-// // that create a block. Otherwise - activates interactive mode
-// if (blockNameFromCli !== '') {
-// 	initMakeBlock(blockNameFromCli).catch(git);
-// } else {
-// 	rl.setPrompt('Block(s) name: ');
-// 	rl.prompt();
-// 	rl.on('line', (line) => {
-// 		initMakeBlock(line).catch(printErrorMessage);
-// 	});
-// }
+// If the user pass the name of the block in the command-line options
+// that create a block. Otherwise - activates interactive mode
+if (blockNameFromCli !== '') {
+	initMakeBlock(blockNameFromCli).catch(printErrorMessage);
+} else {
+	rl.setPrompt('Block(s) name: ');
+	rl.prompt();
+	rl.on('line', (line) => {
+		initMakeBlock(line).catch(printErrorMessage);
+	});
+}
 
-generateJsIfNeed(tmpSlider, 'test');
