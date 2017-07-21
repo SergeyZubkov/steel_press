@@ -3,7 +3,7 @@ import $ from 'jquery';
 import '../vendor/responsiveslides';
 import '../vendor/jquery.appear';
 import '../vendor/jquery.countTo';
-import '../vendor/slick';
+
 
 
 

@@ -23,13 +23,12 @@ function includeBlock(pathToFile, blockName) {
 
 					function getLastIncludeIdx() {
 						let idx = 0;
-						let lastInclude = data
+						data
 							.forEach((line, index) => {
 								if (/include/.test(line)) {
 									idx = index;
 								}
 							});
-
 
 						return idx+1;
 					}
@@ -43,9 +42,10 @@ function includeBlock(pathToFile, blockName) {
 					if (err) {
 						reject(`ERR>> failed to write in file ${err}`);		
 					}
-					const line = '-'.repeat(49 + 'app/pages/index.jade/'.length + blockName.length);
+					const msg = `The block${Array.isArray(blockName) ? 's': ''} ${blockName} has included in app/pages/index.jade/`;
+					const line = '-'.repeat(msg.length);
 					console.log(line);
-					console.log(`The block${Array.isArray(blockName) ? 's': ''} ${blockName} has included in 'app/pages/index.jade/'`);
+					console.log(msg);
 					console.log(line);
 					resolve()
 				});

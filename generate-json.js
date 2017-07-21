@@ -37,17 +37,10 @@ function generateJSON(source, blockName, template) {
 			res = start + res + end;
 
 			
-			fs.writeFile(`${__dirname}/app/data/${blockName}.json`, res, (err) => {
-				if (err) {
-					reject(`failed to write file ${err}`);
-				}
-				resolve();
-			})
+			return res;
 		});
 
 	});
 };
-
-generateJSON(__dirname + '/app/resources/assets/images/projects', 'test', templateFaIconList);
 
 export default generateJSON;
