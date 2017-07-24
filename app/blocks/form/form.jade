@@ -1,0 +1,17 @@
+mixin form()
+	+b('form').form&attributes(attributes)
+		.row
+			.col-md-6
+				+e.input-line
+					+input({type: 'text', name: "first-name", placeholder: "first name*"})
+			.col-md-6
+				+e.input-line
+					+input({type: 'text', name: "last-name", placeholder: "last name*"})
+		+e.input-line
+			+input({type: 'email', name: "email", placeholder: "email*"})
+		+e.input-line
+			+text-area({placeholder: "message*"})
+		+button({mod: '_submit'})
+			| Send
+
+		block

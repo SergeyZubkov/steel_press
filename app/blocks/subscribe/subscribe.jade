@@ -1,0 +1,15 @@
+mixin subscribe()
+	+b.subscribe&attributes(attributes)
+		.container
+			.row
+				+title('_color-white')
+					| Subscirbe for Weekly News From Our Company
+				+e('form').form.row
+					.col-md-5
+						+input({type: 'text', name: 'full-name', placeholder: 'Full-Name*'}, '_subscribe')
+					.col-md-4
+						+input({type: 'email', name: 'email', placeholder: 'email*'}, '_subscribe')
+					.col-md-3
+						+button({mod: '_primary'})
+							| subscribe now
+		block

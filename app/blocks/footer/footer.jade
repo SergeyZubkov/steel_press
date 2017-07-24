@@ -1,0 +1,58 @@
+mixin footer()
+	+b.footer&attributes(attributes)
+		.container
+			+e.top
+				.row
+					.col-md-4
+						+logo({href: '#', src: "/assets/images/logo.png"})
+						+p('_color-white')
+							| Lorem ipsum dolor amet natum latine copiosa at quo, suas labore saperet has there any quote for write lorem sit latineu suas dummy sample
+						+social-fa-list(getData("social-list"), '_tundora')
+					.col-md-3
+						+title('_small _bold _color-white')
+							| Quick Links
+						.row
+							.col-md-6
+								nav
+									a(href='')
+										i.fa.fa-angle-right
+										| Home
+									a(href='')
+										i.fa.fa-angle-right
+										| Features
+									a(href='')
+										i.fa.fa-angle-right
+										| About us
+									a(href='')
+										i.fa.fa-angle-right
+										| Services
+									a(href='')
+										i.fa.fa-angle-right
+										| Projects
+									a(href='')
+										i.fa.fa-angle-right
+										| Pricing
+							.col-md-6
+								nav
+									a(href='')
+										i.fa.fa-angle-right
+										| News
+									a(href='')
+										i.fa.fa-angle-right
+										| Shop
+									a(href='')
+										i.fa.fa-angle-right
+										| Contact Us 
+									a(href='')
+										i.fa.fa-angle-right
+										| FAQ
+					.col-md-4.col-md-offset-1
+
+
+
+						+title('_small _bold _color-white')
+							| Our Adress
+						+contacts-fa-icons-list(getData("contacts-fa-icons-list"))
+		+e.bottom
+			| Desgin with Love <a href=''>@CreativeGigs</a> 2016
+		block

@@ -39,6 +39,29 @@
 	width 100%
 	padding 0
 	margin 0
+	&_nav
+		position absolute
+		top 50%
+		transform translateY(-50%)
+		background rgba(black, 0.7)
+		padding 10px
+		z-index 50
+		width 32px
+		&.prev
+			left 0
+			&:hover:before
+				transform translateX(-50px)
+		&.next
+			right 0
+			&:hover:before
+				transform translateX(50px)
+	&_nav:before
+		display inline-block
+		position relative
+		transform translateX(0)
+		transition .7s
+		font-size 40px
+		color #fff
 	li 
 		-webkit-backface-visibility hidden
 		display none

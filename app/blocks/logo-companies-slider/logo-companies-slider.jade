@@ -1,0 +1,6 @@
+mixin logo-companies-slider(data)
+	+b.logo-companies-slider.wow.fadeInUp(data-wow-dela='0.2s')
+		each item in data
+			.item
+				+e('img').item-img&attributes({src: item.imgSrc})
+					block

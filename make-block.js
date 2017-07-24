@@ -1,5 +1,4 @@
-'use strict';
-// TODO решить проблему с возможной мнонократной, асинхронной работой с app.js
+'use strict'; // TODO решить проблему с возможной мнонократной, асинхронной работой с app.js
 // это может породить баг, когда мы в каком-то обращении работаем со старой версией
 // файла
 
@@ -13,6 +12,7 @@ const rl = createInterface(process.stdin, process.stdout);
 // folder with all blocks
 const BLOCKS_DIR = path.join(__dirname, 'app/blocks');
 const IMAGES_DIR = path.join(__dirname, '/app/resources/assets/images');
+const IMAGES_DIST_DIR = "assets/images";
 const JSON_DIR = path.join(__dirname, 'app/data');
 const JS_PLUGINS_DIR = path.join(__dirname, 'app/vendor');
 const JS_SCRIPTS_DIR = path.join(__dirname, 'app/scripts');
@@ -43,6 +43,47 @@ const tmpImagesList = {
 	}
 };
 
+const tmpFaIconsList = {
+	jade: 
+`mixin {blockName}(data)
+	+b('ul').{blockName}&attributes(attributes)
+		each item in data
+			+e('li').item
+				+e.item-icon&attributes({class: item.iconClass})
+					block`,
+	styl: `.{blockName}\n\tdisplay block\n`,
+	json: '[\n\t{\n\t\t"iconClass": "fa "\n\t},\n\t{\n\t\t"iconClass": "fa "\n\t}\n]'
+
+};
+
+const tmpScrollTopButton = {
+	jade: 
+`mixin {blockName}(attribues)
+	+b.{blockName}&attributes(attributes)
+		block`,
+	styl: `.{blockName}\n\tdisplay block\n`,
+	js: {
+		baseJS:
+`
+	// ------------------{blockName}
+	$(window).on('scroll', () => {
+		if ($(window).scrollTop() > 200) {
+			$('.{blockName}').fadeIn();
+		}else {
+			$('.{blockName}').fadeOut();
+		}
+	});
+
+	$('.{blockName}').on('click', () => {
+		$('html, body').animate({scrollTop: 0}, 1500);
+		return false;
+	});
+ // ----------------end {blockName}
+`
+	}
+
+};
+
 const tmpSlider = {
 		jade: 
 `mixin {blockName}(data)
@@ -61,12 +102,12 @@ const tmpSlider = {
 		pluginSource: path.join(JS_PLUGINS_DIR, 'slick.js'),
 		cssPluginSource: path.join(JS_PLUGINS_DIR, 'slick.css'),
 		baseJS: 
-`	//----------------------{blockName}
+`	//	----------------------{blockName}
 
 	$('.{blockName}').slick({
 
 	});
-	// ----------------------End {blockName}`
+	// ----------------------end {blockName}`
 	}
 }
 
@@ -98,13 +139,13 @@ function directoryExist(blockPath, blockName) {
 	});
 }
 
-function createDir(dirPath) {
+function createDir(template, dirPath) {
 	return new Promise((resolve, reject) => {
 		fs.mkdir(dirPath, err => {
 			if (err) {
 				reject(`ERR>>> Failed to create a folder '${dirPath}'`);
 			} else {
-				resolve();
+				resolve(template);
 			}
 		});
 	});
@@ -117,6 +158,10 @@ function getTemplate(blockName) {
 			tmp = tmpImagesList;
 		} else if (/-slider$/.test(blockName)) {
 			tmp = tmpSlider;
+		} else if (/-fa-icons-list$/.test(blockName)) {
+			tmp = tmpFaIconsList;
+		} else if (/scroll-top-button$/.test(blockName)) {
+			tmp = tmpScrollTopButton;
 		}	else {
 			tmp = tmpDefault;
 		}
@@ -129,38 +174,46 @@ function generateJSONIfNeeded(template, blockName) {
 		if (!template.json) {
 			resolve(template)
 		} else {
-			let imagesDir = path.join(template.json.sourceImages, blockName);
-			console.log(imagesDir)
-			let fillTmp;
+			if (!template.json.filesSource) {
+			// если нету файлов на основе которых будет сгенерирован
+			// json
+				resolve(template)
+			} else {
+				// если есть файлы 
+				let filesSource = path.join(template.json.sourceImages, blockName);
+				let fillTmp;
 
-			fs.readdir(imagesDir, (err, files) => {
-				if (err) {
-					reject(`failed to read directory ${err}`);
-				}
-				if (!files) {
-					reject(`files dont found in ${imagesDir} ${err}`);
-				} else {
-					const start = `[\n`;
-					const end = `\n]`;
+				fs.readdir(filesSource, (err, files) => {
+					if (err) {
+						reject(`failed to read directory ${err}`);
+					}
+					if (!files) {
+						reject(`files dont found in ${filesSource} ${err}`);
+					} else {
+						const start = `[\n`;
+						const end = `\n]`;
 
-					fillTmp = files.map(file => {		
-						return template.json.itemTemplate.replace("{{value}}", file);
-					});	
+						fillTmp = files.map(file => {
+							let pathToFile = path.join(IMAGES_DIST_DIR, blockName, file);
+							pathToFile = pathToFile.replace(/\\/g, '/');
+							return template.json.itemTemplate.replace("{{value}}", pathToFile);
+						});	
 
-					fillTmp = fillTmp.join(',\n');
-					fillTmp = start + fillTmp + end;
-					template.json = fillTmp;
+						fillTmp = fillTmp.join(',\n');
+						fillTmp = start + fillTmp + end;
+						template.json = fillTmp;
 
-					resolve(template);
-				}
-			});
+						resolve(template);
+					}
+				});
+			}
 		}
 	});
 }
 
 function generateJsIfNeed(template, blockName) {
-	const pluginName = template.js.pluginName;
 	function readJS() {
+		const pluginName = template.js.pluginName;
 		return new Promise((resolve, reject) => {
 			fs.readFile(JS_APP_PATH, 'utf-8', (err, data) => {
 				if (err) {
@@ -192,7 +245,7 @@ function generateJsIfNeed(template, blockName) {
 						data.splice(getLastImportIdx(), 0, importLine);
 					}
 
-					if (isPluginNoImported()) {
+					if (pluginName&&isPluginNoImported()) {
 						addImport();
 					}
 
@@ -226,7 +279,6 @@ function generateJsIfNeed(template, blockName) {
 			.then((newData) => writeJS(newData))
 			.then(() => resolve(template))
 		} else {
-			console.log(template)
 
 			resolve(template);
 		}
@@ -291,10 +343,10 @@ function initMakeBlock(candidateBlockName) {
 
 		return validateBlockName(blockName)
 			.then(() => directoryExist(blockPath, blockName))
-			.then(() => createDir(blockPath))
 			.then(() => getTemplate(blockName))
 			.then((template) => generateJSONIfNeeded(template, blockName))
 			.then((template) => generateJsIfNeed(template, blockName))
+			.then((template) => createDir(template, blockPath))
 			.then((template) => createFiles(blockPath, blockName, template))
 			.then(() => getFiles(blockPath))
 			.then(files => {
@@ -316,7 +368,7 @@ function initMakeBlock(candidateBlockName) {
 
 	const promises = blockNames.map(name => makeBlock(name));
 
- 	return Promise.all(promises).then(() => includeBlock(INDEX_JADE_PATH, blockNames));
+	return Promise.all(promises).then(() => includeBlock(INDEX_JADE_PATH, blockNames));
 }
 
 

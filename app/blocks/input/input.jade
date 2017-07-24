@@ -1,0 +1,3 @@
+mixin input(data, mixin)
+	+b('input').input&attributes({class: mixin, type: data.type, name: data.name, placeholder: data.placeholder})
+		block

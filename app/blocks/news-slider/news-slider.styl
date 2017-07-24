@@ -1,0 +1,68 @@
+.news-slider
+	display block
+	.relative
+		width 269px
+		margin 0 auto
+		&:after
+			content '+'
+			display block
+			background alpha(color-yellow, .85)
+			position absolute
+			top 50%
+			left 50%
+			transform translate(-50%, -50%)
+			color #fff
+			text-align center
+			line-height 275px
+			font-size 30px
+			width 50%
+			height 50%
+			transition .4s
+			opacity 0
+	&__item
+		text-decoration none
+		&-caption
+			padding 0 10px
+			text-align center
+			&-date
+				padding 20px 0
+				color color-yellow
+				text-transform capitalize
+				font-weight 300
+			&-title
+				font-weight 500
+				color #fff
+				font-size 22px
+				margin-bottom 15px
+			&-text
+				color 
+		&:hover .relative:after
+			width 100%
+			height 100%
+			opacity 1
+	.slick-list
+		margin-left -8px
+		margin-right -8px
+	.slick-slide img 
+		margin 0 auto
+	.slick-arrow
+		position absolute
+		top -100px
+		background transparent
+		border 1px solid dasty-gray
+		color transparent
+		font-size 0
+		size(40px)
+		&.slick-prev
+			right 45px
+			&:after
+				content '<'
+				color dasty-gray
+				font-size 20px
+		&.slick-next
+			right 5px
+			&:after
+				content '>'
+				color dasty-gray
+				font-size 20px
+	

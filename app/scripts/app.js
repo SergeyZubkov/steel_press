@@ -4,12 +4,16 @@ import '../vendor/responsiveslides';
 import '../vendor/jquery.appear';
 import '../vendor/jquery.countTo';
 import '../vendor/slick';
+import '../vendor/wow';
+
+
 
 
 
 
 $(() => {
 	svg4everybody();
+
 
 	// ------------------------Top slider
 
@@ -18,12 +22,12 @@ $(() => {
 		speed: 2000,            // Integer: Speed of the transition, in milliseconds
 		timeout: 6000,          // Integer: Time between slide transitions, in milliseconds
 		pager: true,           // Boolean: Show pager, true or false
-		nav: false,             // Boolean: Show navigation, true or false
+		nav: true,             // Boolean: Show navigation, true or false
 		random: false,          // Boolean: Randomize the order of the slides, true or false
 		pause: false,           // Boolean: Pause on hover, true or false
 		pauseControls: true,    // Boolean: Pause when hovering controls, true or false
-		prevText: 'Previous',   // String: Text for the "previous" button
-		nextText: 'Next',       // String: Text for the "next" button
+		prevText: '',   // String: Text for the "previous" button
+		nextText: '',       // String: Text for the "next" button
 		maxwidth: '',           // Integer: Max-width of the slideshow, in pixels
 		navContainer: '',       // Selector: Where controls should be appended to, default is after the 'ul'
 		manualControls: '',     // Selector: Declare custom pager navigation
@@ -31,6 +35,24 @@ $(() => {
 		before() {},   // Function: Before callback
 		after() {}     // Function: After callback
 	});
+
+	$('.rslides1_nav.next').addClass('fa fa-angle-right');
+	$('.rslides1_nav.prev').addClass('fa fa-angle-left');
+
+	// ------------------------WOW animatation
+	const wow = new window.WOW();
+	wow.init();
+	$('.rslides1_nav.next').on('click', () => {
+		let $clone = $('.slider__caption-sub-title')
+				.clone()
+				.eq(0)
+				.removeClass('wow fadeInUp')
+				.addClass('wow fadeOutDown');
+
+		$('.slider__caption-sub-title')
+			.replaceWith($clone);
+	})
+	// ------------------------end WOW animation
 
 	// -----------------------Toggle menu
 	$('.nav-toggle').on('click', function () {
@@ -56,7 +78,7 @@ $(() => {
 	const $body = $('body');
 
 	$counterListItem.appear();
-	
+
 	$body.on('appear', () => {
 
 		$counterListItem
@@ -69,7 +91,7 @@ $(() => {
 
 	});
 
-	//	----------------------Slider Projects
+	// ----------------------Slider Projects
 
 	$('.slider-projects').slick({
 		arrows: true,
@@ -97,17 +119,43 @@ $(() => {
 		$('.slider-projects').slick('slickFilter', filterBy);
 	});
 
-	//	--------------------Slider Testimonials
+	// --------------------Slider Testimonials
 	$('.slider-testimonials').slick({
 		arrows: false,
 		dots: true,
 		autoplay: true,
 		autoplaySpeed: 2000
 	});
-	//----------------------test-slider
+	//	----------------------news-slider
 
-	$('.test-slider').slick({
-
+	$('.news-slider').slick({
+		slidesToShow: 3,
+		slidesToScroll: 1
 	});
-	// ----------------------End test-slider
+	// ----------------------end news-slider
+
+	//	----------------------logo-companies-slider
+
+	$('.logo-companies-slider').slick({
+		slidesToShow: 4,
+		slidesToScroll: 1,
+		arrows: false
+	});
+	// ----------------------end logo-companies-slider
+
+	// ------------------scroll-top-button
+	$(window).on('scroll', () => {
+		if ($(window).scrollTop() > 700) {
+			$('.scroll-top-button').fadeIn();
+		}else {
+			$('.scroll-top-button').fadeOut();
+		}
+	});
+
+	$('.scroll-top-button').on('click', () => {
+		$('html, body').animate({scrollTop: 0}, 1500);
+		return false;
+	});
+	// ----------------end scroll-top-button
+
 });

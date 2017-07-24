@@ -10,6 +10,8 @@
 		text-align center
 		transition .2s
 		margin-left 5px
+		&:first-child
+			margin-left 0
 		&:before
 			line-height 32px
 		&:hover 
@@ -31,3 +33,11 @@
 		bottom -45%
 		width 100%
 		transition .5s
+	&_tundora
+		.social-fa-list__item
+			border-radius 0
+			border 1px solid tundora
+			color tundora
+			&:hover
+				border-color color-yellow
+				color mine-shaft

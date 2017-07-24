@@ -1,0 +1,8 @@
+mixin contacts-fa-icons-list(data)
+	+b('ul').contacts-fa-icons-list&attributes(attributes)
+		each item in data
+			+e('li').item
+				+e.item-icon&attributes({class: item.iconClass})
+				+e('div').item-title 
+					| #{item.title}
+				block

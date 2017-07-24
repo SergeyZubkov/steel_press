@@ -1,0 +1,8 @@
+mixin news()
+	+b.news.wow.fadeInUp&attributes(attributes)
+		.container
+			+theme-title('_color-white')
+				| Lates News
+			+e.slider-container
+				+news-slider(getData('news-slider'))
+		block

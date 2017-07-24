@@ -22,8 +22,11 @@ function generateJSON(source, blockName, template) {
 
 		fs.readdir(source, (err, files) => {
 			if (err) {
-				reject(`failed to read directory ${err}`)
-			} 
+				reject(`failed to read directory ${err}`);
+			}
+			if (!files) {
+				reject(`files dont found in ${source} ${err}`);
+			}
 
 			const start = `[\n`;
 			const end = `\n]`;

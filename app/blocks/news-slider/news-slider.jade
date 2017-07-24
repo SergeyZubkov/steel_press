@@ -1,0 +1,15 @@
+mixin news-slider(data)
+	+b.news-slider&attributes(attributes)
+		each item in data
+			+e('a').item&attributes({href: ''})
+				.relative
+					+e('img').item-img&attributes({src: item.imgSrc})
+				+e('div').item-caption
+					+e('h5').item-caption-date
+						| Posted on #{item.captionDate}
+					+e('h4').item-caption-title
+						| #{item.captionTitle}
+					+e('div').item-caption-text
+						+p('_color-lighted').
+							| #{item.captionText}
+					block

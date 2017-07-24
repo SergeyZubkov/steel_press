@@ -1,3 +1,15 @@
 .bg-mine-shaft
 	display block
 	background mine-shaft
+	&_fixed-img
+		position relative
+		&:after
+			content ''
+			display block
+			position absolute
+			top 0
+			bottom 0
+			left 0
+			right 0
+			background url('../images/slider/slide-2.jpg') fixed
+			opacity .3

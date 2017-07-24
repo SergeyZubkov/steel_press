@@ -1,0 +1,38 @@
+.footer
+	display block
+	position fixed
+	z-index -1
+	left 0
+	right 0
+	bottom 0
+	height 465px
+	width 100%
+	background mine-shaft
+	&__top
+		padding 80px 0 45px
+	& img.logo__image
+		width 95%
+	.col-md-4:nth-child(2)
+		padding-left 25px
+	nav
+		a
+			display block
+			height 35px
+			line-height 35px
+			position relative
+			color #fff
+			font-weight 400
+			transition .3s
+			i
+				margin-right 15px
+			&:hover
+				color color-yellow
+	&__bottom
+		height 55px
+		line-height 55px
+		background darken(mine-shaft, 10%)
+		color silver
+		text-align center
+		font-weight 300
+		font-size 17px
+		

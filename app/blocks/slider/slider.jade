@@ -12,11 +12,11 @@ mixin slider(data)
 					if (item.caption)
 						+e.caption 
 
-							+e.caption-title #{firstWord}
+							+e.caption-title.wow.fadeInUp #{firstWord}
 									span #{secondWord}
 									|	#{otherWords}
-							+e.caption-title #{item.caption.title2}
-							+e.caption-sub-title #{item.caption.subtitle}
+							+e.caption-title.wow.fadeInUp(data-wow-delay="1s") #{item.caption.title2}
+							+e.caption-sub-title.wow.fadeInUp(data-wow-delay="1.5s") #{item.caption.subtitle}
 							+button({mod: 'primary'})
 								| contact us
 		block

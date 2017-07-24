@@ -43,63 +43,100 @@ include /blocks/testimonials/testimonials
 include /blocks/theme-title/theme-title
 include /blocks/title/title
 include /blocks/title-line/title-line
-include /blocks/test-slider/test-slider
-include /blocks/test-slider/test-slider
-include /blocks/test-slider/test-slider
-include /blocks/test-slider/test-slider
-include /blocks/test-slider/test-slider
+include /blocks/news/news
+include /blocks/news-slider/news-slider
+include /blocks/contact-us/contact-us
+include /blocks/form/form
+include /blocks/input/input
+include /blocks/text-area/text-area
+include /blocks/logo-companies-slider/logo-companies-slider
+include /blocks/subscribe/subscribe
+include /blocks/footer/footer
+include /blocks/contacts-fa-icons-list/contacts-fa-icons-list
+include /blocks/scroll-top-button/scroll-top-button
 
 block head
 	- var pageTitle = 'CSSSR Project Template';
 
 block content
+	.main-content
+		//
+			=================================
+			=            Header               
+			=====================================
+		+header
+		//====  End of Header ====//
+		//
+			=================================
+			=            Slider               
+			=====================================
+		+slider(getData('slides-list'))
+		//====  End of Slider ====//
+		//
+			=================================
+			=            Service               
+			=====================================
+		+service
+		//====  End of Service ====//
+		//
+			=================================
+			=            About               
+			=====================================
+		+about
+		//====  End of About ====//
+		//
+			=================================
+			=            Give               
+			=====================================
+		+stripe-bg-fixed
+			+give
+		//====  End of Give ====//
+		//
+			=================================
+			=            Projects               
+			=====================================
+		+bg-mine-shaft
+			+projects
+		//====  End of Projects ====//
+		//
+			=================================
+			=            Testimonials               
+			=====================================
+		+testimonials
+		//====  End of Testimonials ====//
+		//
+			=================================
+			=            Team               
+			=====================================
+		+team
+		//====  End of Team ====//
+		//
+			=================================
+			=            News               
+			=====================================
+		+bg-mine-shaft('_fixed-img')
+			+news
+		//====  End of News ====//
+		//
+			=================================
+			=            Contact Us               
+			=====================================
+		+contact-us
+		//====  End of Contact Us ====//
+		.container
+			+logo-companies-slider(getData('logo-companies-slider'))
+		//
+			=================================
+			=            Subscribe               
+			=====================================
+		+bg-mine-shaft('wow fadeInUp')
+			+subscribe
+		//====  End of Subscribe ====//
+	//====	End of Main-Content ====//
 	//
 		=================================
-		=            Header               
+		=            Footer               
 		=====================================
-	+header
-	//====  End of Header ====//
-	//
-		=================================
-		=            Slider               
-		=====================================
-	+slider(getData('slides-list'))
-	//====  End of Slider ====//
-	//
-		=================================
-		=            Service               
-		=====================================
-	+service
-	//====  End of Service ====//
-	//
-		=================================
-		=            About               
-		=====================================
-	+about
-	//====  End of About ====//
-	//
-		=================================
-		=            Give               
-		=====================================
-	+stripe-bg-fixed
-		+give
-	//====  End of Give ====//
-	//
-		=================================
-		=            Projects               
-		=====================================
-	+bg-mine-shaft
-		+projects
-	//====  End of Projects ====//
-	//
-		=================================
-		=            Testimonials               
-		=====================================
-	+testimonials
-	//====  End of Testimonials ====//
-	//
-		=================================
-		=            Team               
-		=====================================
-	+team
-	//====  End of Team ====//
+	+footer
+	//====  End of Footer ====//
+	+scroll-top-button
