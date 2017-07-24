@@ -5,6 +5,7 @@ import '../vendor/jquery.appear';
 import '../vendor/jquery.countTo';
 import '../vendor/slick';
 import '../vendor/wow';
+import {TweenMax} from 'gsap';
 
 
 
@@ -13,14 +14,37 @@ import '../vendor/wow';
 
 $(() => {
 	svg4everybody();
-
+	// ------------------------WOW animatation
+	const wow = new window.WOW({
+		live: true
+	});
+	wow.init();
+	// ------------------------end WOW animation
 
 	// ------------------------Top slider
 
-	$('.rslides').responsiveSlides({
+	function getAnimElms() {
+		const $activeSlide =  $('.rslides1_on');
+		const $activeSlideTitles = $activeSlide
+																.find('.slider__caption-title');
+		const title1 = $activeSlideTitles.get(0);
+		const title2 = $activeSlideTitles.get(1);
+		const subtitle = $activeSlide
+											.find('.slider__caption-sub-title')
+											.get(0);
+		const button = $activeSlide.find('a.button');
+		return [title1, title2, subtitle, button]
+	}
+
+	function scaleSliderImg() {
+		const sliderImg = $('.rslides1_on').find('div').get(0);
+		t1.to(sliderImg, 8, {scaleX: 1.03, scaleY: 1.03});
+	}
+
+	const $mainSlider = $('.rslides').responsiveSlides({
 		auto: true,             // Boolean: Animate automatically, true or false
-		speed: 2000,            // Integer: Speed of the transition, in milliseconds
-		timeout: 6000,          // Integer: Time between slide transitions, in milliseconds
+		speed: 2800,            // Integer: Speed of the transition, in milliseconds
+		timeout: 8000,          // Integer: Time between slide transitions, in milliseconds
 		pager: true,           // Boolean: Show pager, true or false
 		nav: true,             // Boolean: Show navigation, true or false
 		random: false,          // Boolean: Randomize the order of the slides, true or false
@@ -32,27 +56,25 @@ $(() => {
 		navContainer: '',       // Selector: Where controls should be appended to, default is after the 'ul'
 		manualControls: '',     // Selector: Declare custom pager navigation
 		namespace: 'rslides',   // String: Change the default namespace used
-		before() {},   // Function: Before callback
-		after() {}     // Function: After callback
+		before() {							
+			t1.staggerTo(getAnimElms(), .7, {opacity: 0, y: 150}, .7);
+			scaleSliderImg();
+		},
+		after() {
+			t1.staggerFromTo(getAnimElms(), .7, {opacity: 0, y: 150}, {opacity: 1, y: 0}, .7);
+			scaleSliderImg()
+		}     
+
 	});
 
+	const t1 = TweenMax;
+	
+	t1.staggerFromTo(getAnimElms(), .7, {opacity: 0, y: 150}, {opacity: 1, y: 0}, .7);
+	scaleSliderImg();
+		
 	$('.rslides1_nav.next').addClass('fa fa-angle-right');
 	$('.rslides1_nav.prev').addClass('fa fa-angle-left');
 
-	// ------------------------WOW animatation
-	const wow = new window.WOW();
-	wow.init();
-	$('.rslides1_nav.next').on('click', () => {
-		let $clone = $('.slider__caption-sub-title')
-				.clone()
-				.eq(0)
-				.removeClass('wow fadeInUp')
-				.addClass('wow fadeOutDown');
-
-		$('.slider__caption-sub-title')
-			.replaceWith($clone);
-	})
-	// ------------------------end WOW animation
 
 	// -----------------------Toggle menu
 	$('.nav-toggle').on('click', function () {
