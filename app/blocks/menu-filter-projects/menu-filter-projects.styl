@@ -6,11 +6,19 @@
 	left 360px
 	top 50%
 	transform translateY(-50%)
+	+m(1200px)
+		left 0
+		top 250%
+	+m(602px)
+		top 540%
+		width 100%
 	&__item
 		display inline-block
 		border 1px solid tundora
 		border-right none
 		font-size 18px
+		+m(602px)
+			display block
 		&:last-child
 			border-right 1px solid tundora
 		&_active .menu-filter-projects__item-title

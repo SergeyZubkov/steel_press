@@ -1,41 +1,41 @@
 [
 	{
-		"img": "/assets/images/service/service-1.jpg",
+		"img": "assets/images/service/service-1.jpg",
 		"caption": {
 			"title": "Matireal industry",
 			"link": "#"
 		}
 	},
 	{
-		"img": "/assets/images/service/service-2.jpg",
+		"img": "assets/images/service/service-2.jpg",
 		"caption": {
 			"title": "chemical science",
 			"link": "#"
 		}
 	},
 	{
-		"img": "/assets/images/service/service-3.jpg",
+		"img": "assets/images/service/service-3.jpg",
 		"caption": {
 			"title": "farm&agriculture",
 			"link": "#"
 		}
 	},
 	{
-		"img": "/assets/images/service/service-4.jpg",
+		"img": "assets/images/service/service-4.jpg",
 		"caption": {
 			"title": "telecommunication",
 			"link": "#"
 		}
 	},
 	{
-		"img": "/assets/images/service/service-5.jpg",
+		"img": "assets/images/service/service-5.jpg",
 		"caption": {
 			"title": "Oil&petrolium",
 			"link": "#"
 		}
 	},
 	{
-		"img": "/assets/images/service/service-6.jpg",
+		"img": "assets/images/service/service-6.jpg",
 		"caption": {
 			"title": "civil engeneering",
 			"link": "#"

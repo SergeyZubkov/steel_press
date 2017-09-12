@@ -22,9 +22,10 @@ $(() => {
 	// ------------------------end WOW animation
 
 	// ------------------------Top slider
+	const t1 = TweenMax;
 
 	function getAnimElms() {
-		const $activeSlide =  $('.rslides1_on');
+		const $activeSlide = $('.rslides1_on');
 		const $activeSlideTitles = $activeSlide
 																.find('.slider__caption-title');
 		const title1 = $activeSlideTitles.get(0);
@@ -33,7 +34,7 @@ $(() => {
 											.find('.slider__caption-sub-title')
 											.get(0);
 		const button = $activeSlide.find('a.button');
-		return [title1, title2, subtitle, button]
+		return [title1, title2, subtitle, button];
 	}
 
 	function scaleSliderImg() {
@@ -41,7 +42,7 @@ $(() => {
 		t1.to(sliderImg, 8, {scaleX: 1.03, scaleY: 1.03});
 	}
 
-	const $mainSlider = $('.rslides').responsiveSlides({
+	$('.rslides').responsiveSlides({
 		auto: true,             // Boolean: Animate automatically, true or false
 		speed: 2800,            // Integer: Speed of the transition, in milliseconds
 		timeout: 8000,          // Integer: Time between slide transitions, in milliseconds
@@ -56,22 +57,20 @@ $(() => {
 		navContainer: '',       // Selector: Where controls should be appended to, default is after the 'ul'
 		manualControls: '',     // Selector: Declare custom pager navigation
 		namespace: 'rslides',   // String: Change the default namespace used
-		before() {							
+		before() {
 			t1.staggerTo(getAnimElms(), .7, {opacity: 0, y: 150}, .7);
 			scaleSliderImg();
 		},
 		after() {
 			t1.staggerFromTo(getAnimElms(), .7, {opacity: 0, y: 150}, {opacity: 1, y: 0}, .7);
 			scaleSliderImg()
-		}     
+		}
 
 	});
 
-	const t1 = TweenMax;
-	
 	t1.staggerFromTo(getAnimElms(), .7, {opacity: 0, y: 150}, {opacity: 1, y: 0}, .7);
 	scaleSliderImg();
-		
+
 	$('.rslides1_nav.next').addClass('fa fa-angle-right');
 	$('.rslides1_nav.prev').addClass('fa fa-angle-left');
 
@@ -96,7 +95,7 @@ $(() => {
 	});
 
 	// -------------------------CountTo
-	const $counterListItem = $('.counter-list__item');
+	const $counterListItem = $('.counter-list__item-counter');
 	const $body = $('body');
 
 	$counterListItem.appear();
@@ -119,7 +118,23 @@ $(() => {
 		arrows: true,
 		infinite: true,
 		slidesToShow: 4,
-		slidesToScroll: 1
+		slidesToScroll: 1,
+		responsive: [
+    {
+      breakpoint: 600,
+      settings: {
+        slidesToShow: 2,
+        slidesToScroll: 2
+      }
+    },
+    {
+      breakpoint: 480,
+      settings: {
+        slidesToShow: 1,
+        slidesToScroll: 1
+      }
+    }
+  ]
 	});
 
 	$('.menu-filter-projects__item').on('click', function () {
@@ -152,7 +167,23 @@ $(() => {
 
 	$('.news-slider').slick({
 		slidesToShow: 3,
-		slidesToScroll: 1
+		slidesToScroll: 1,
+		responsive: [
+			{
+				breakpoint: 600,
+				settings: {
+					slidesToShow: 2,
+					slidesToScroll: 2
+				}
+			},
+		    {
+		      breakpoint: 480,
+		      settings: {
+		        slidesToShow: 1,
+		        slidesToScroll: 1
+		      }
+		    }
+		]
 	});
 	// ----------------------end news-slider
 
@@ -161,7 +192,30 @@ $(() => {
 	$('.logo-companies-slider').slick({
 		slidesToShow: 4,
 		slidesToScroll: 1,
-		arrows: false
+		arrows: false,
+		responsive: [
+			{
+				breakpoint: 600,
+				settings: {
+					slidesToShow: 2,
+					slidesToScroll: 2
+				}
+			},
+		    {
+		      breakpoint: 480,
+		      settings: {
+		        slidesToShow: 1,
+		        slidesToScroll: 1
+		      }
+		    },
+				{
+		      breakpoint: 720,
+		      settings: {
+		        slidesToShow: 3,
+		        slidesToScroll: 1
+		      }
+		    }
+		]
 	});
 	// ----------------------end logo-companies-slider
 

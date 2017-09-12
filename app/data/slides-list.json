@@ -1,6 +1,6 @@
 [
 	{
-		"src": "/assets/images/slider/slide-1.jpg",
+		"src": "assets/images/slider/slide-1.jpg",
 		"caption": {
 			"title1": "Provide indsutrail",
 			"title2": "Solution to your business",
@@ -8,7 +8,7 @@
 		}
 	},
 	{
-		"src": "/assets/images/slider/slide-2.jpg",
+		"src": "assets/images/slider/slide-2.jpg",
 		"caption": {
 			"title1": "Test",
 			"title2": "Solution to your business",

@@ -2,9 +2,13 @@
 	display block
 	margin 72px 0 70px
 	position relative
-	@media only screen and (max-width: 768px) 
+	@media only screen and (max-width: 768px)
 		position static
+		text-align center
 	& .button
 		position absolute
 		right 0
 		bottom 0
+		+m(480px)
+			position static
+			margin-top 50px
